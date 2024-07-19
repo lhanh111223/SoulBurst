@@ -30,14 +30,14 @@ public class BossImmuneState : BossBaseState
             bossMovement.CancelInvoke("CalculatePath");
         }
         int count = 0;
-
+        
         while(count < boss.enemyInstances.Length)
         {
             enemyInstances[count] = Object.Instantiate(boss.enemyInstances[count], boss.spawnPosition[count].position, Quaternion.identity);
             count++;
         }
         
-        
+
     }
 
     public override void OnCollisionEnter(BossStateManager boss, Collision2D collider)
