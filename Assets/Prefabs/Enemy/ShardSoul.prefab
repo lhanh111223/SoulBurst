@@ -77,19 +77,23 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.66660976, y: 0.22068906}
-      - {x: 0.5992012, y: 0.362216}
-      - {x: 0.25665188, y: 0.63806}
+    - - {x: 0.73265076, y: 0.54648995}
+      - {x: 0.58159065, y: 0.8156948}
+      - {x: 0.001294136, y: 0.902223}
       - {x: 0.00020688772, y: 0.70638704}
       - {x: 0.0040507913, y: -0.52389944}
-      - {x: 0.06736088, y: -0.5209005}
-      - {x: 0.2508284, y: -0.46342015}
-      - {x: 0.38102245, y: -0.37129116}
-      - {x: 0.5009289, y: -0.28576088}
-      - {x: 0.5912237, y: -0.19243217}
-      - {x: 0.6439495, y: -0.08226752}
-      - {x: 0.6745825, y: 0.006344557}
-      - {x: 0.68321896, y: 0.11461896}
+      - {x: 0.0013198853, y: -0.701411}
+      - {x: 0.47976744, y: -0.5822928}
+      - {x: 0.58981323, y: -0.49502087}
+      - {x: 0.65157604, y: -0.4225502}
+      - {x: 0.7068224, y: -0.30525112}
+      - {x: 0.7406845, y: -0.27472878}
+      - {x: 0.7871046, y: -0.15808201}
+      - {x: 0.84193134, y: -0.066687584}
+      - {x: 0.8509836, y: -0.011920691}
+      - {x: 0.87288857, y: 0.08943772}
+      - {x: 0.8683014, y: 0.26610446}
+      - {x: 0.8241062, y: 0.37878197}
   m_UseDelaunayMesh: 0
 --- !u!114 &3299903103333772761
 MonoBehaviour:
@@ -230,8 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 2
-  attackCooldown: 1
+  moveSpeed: 6
+  attackRange: 1
 --- !u!61 &8388781493721363198
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -264,18 +268,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0016665459, y: -0.0013449192}
+  m_Offset: {x: 0.0082707405, y: -0.007949352}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.03125, y: 1.03125}
+    oldSize: {x: 1.375, y: 1.375}
     newSize: {x: 2.6666667, y: 2.6666667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99568844, y: 1.076673}
+  m_Size: {x: 1.30828, y: 1.2835989}
   m_EdgeRadius: 0
 --- !u!50 &798665639180473079
 Rigidbody2D:
@@ -289,7 +293,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100000
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0

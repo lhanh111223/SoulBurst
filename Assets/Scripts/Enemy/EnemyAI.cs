@@ -6,10 +6,8 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _anim;
     public Transform player;
-    public float moveSpeed = 3.0f;
-    public float attackCooldown = 1.0f;
-    private bool isAttacking = false;
-    private bool isPlayerInRange = false;
+    public float moveSpeed = 5.0f;
+    public float attackRange = 1.0f; // Khoảng cách để bắt đầu tấn công
 
     void Start()
     {
@@ -26,18 +24,9 @@ public class EnemyAI : MonoBehaviour
     {
         if (player != null)
         {
-            if (isPlayerInRange)
-            {
-                if (!isAttacking)
-                {
-                    StartCoroutine(AttackPlayer());
-                }
-            }
-            else
-            {
-                MoveTowardsPlayer();
-            }
+            MoveTowardsPlayer();
 
+            // Thay đổi hướng của nhân vật địch
             if (player.position.x < transform.position.x)
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -51,49 +40,21 @@ public class EnemyAI : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
-        _anim.SetBool("isMoving", true);
-        _anim.SetBool("isAttack", false);
-        Vector2 direction = ((Vector2)player.position - (Vector2)transform.position) * moveSpeed;
-        _rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.deltaTime);
-    }
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-    IEnumerator AttackPlayer()
-    {
-        isAttacking = true;
-        _anim.SetBool("isMoving", false);
-        _anim.SetBool("isAttack", true);
-        yield return new WaitForSeconds(attackCooldown);
-        isAttacking = false;
-    }
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Player"))
+        if (distanceToPlayer > attackRange)
         {
-            isPlayerInRange = true;
+            // Di chuyển tới người chơi
+            _anim.SetBool("isMoving", true);
+            _anim.SetBool("isAttack", false);
+            Vector2 direction = (player.position - transform.position).normalized;
+            _rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // Tấn công người chơi
+            _anim.SetBool("isMoving", false);
             _anim.SetBool("isAttack", true);
         }
     }
-
-    void OnTriggerStay2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Player"))
-        {
-            isPlayerInRange = true;
-            if (!isAttacking)
-            {
-                StartCoroutine(AttackPlayer());
-            }
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Player"))
-        {
-            isPlayerInRange = false;
-            _anim.SetBool("isAttack", false);
-        }
-    }
-
 }

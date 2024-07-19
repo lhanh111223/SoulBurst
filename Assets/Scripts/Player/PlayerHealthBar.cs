@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.Parameter;
+using UnityEngine.SceneManagement;
 public class PlayerHealthBar : MonoBehaviour
 {
     static GameParameterPlayerHealthBar _param = new();
@@ -41,6 +42,7 @@ public class PlayerHealthBar : MonoBehaviour
         {
             currentHealth = 0;
             player.PlayerDie();
+            SceneManager.LoadScene("EndGameScene");
         }
         fillBar.fillAmount = (float)currentHealth / (float)maxHealth;
         txtHp.text = currentHealth.ToString() + " / " + maxHealth.ToString();
